@@ -4,12 +4,23 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
     <title>PWA template</title>
+    <link rel="stylesheet" href="style.css"/>
     <link rel="manifest" href="manifest.json"/>
     <script>
       navigator.serviceWorker.register("./sw.js")
     </script>
   </head>
   <body>
-    <p>this is PWA template</p>
+    <header>
+      <div class="logo"></div>
+      <button class="otoshidama"></button>
+    </header>
+    <main>
+      <canvas>
+      </canvas>
+      <ol>
+        <li>欲しい物</li>
+      </ol>
+    </main>
   </body>
 </html>
