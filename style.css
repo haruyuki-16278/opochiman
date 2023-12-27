@@ -1,6 +1,25 @@
+/* box-sizingをborderにして配置をやりやすく */
+/* marginは自分でつけるので一旦一括で0にする */
 * {
   box-sizing: border-box;
   margin: 0;
+}
+
+/*
+  カラートークンを宣言する
+  参考:
+  - https://www.canva.com/colors/color-palette-generator/
+  - https://venngage.com/tools/accessible-color-palette-generator
+*/
+:root {
+  --color-black: #050505;
+  --color-gray: #8C8C8C;
+  --color-cloud: #CBC8C6;
+  --color-white: #fafafa;
+  --color-valencia: #D44936;
+  --color-pastel-red: #fedddb;
+  --color-pastel-blueberry: #b3b4ed;
+  --color-pastel-palegreen: #b5dabf;
 }
 
 html, body {
@@ -8,15 +27,52 @@ html, body {
   height: 100%;
 }
 
+button {
+  border-radius: 100vh;
+  border: 2px solid var(--color-valencia);
+  padding: 4px 32px;
+  color: var(--color-valencia);
+  font-size: 24px;
+  line-height: 1;
+  font-weight: bold;
+  background-color: var(--color-white);
+  transition: all .2s;
+
+  &:hover, &:active {
+    color: var(--color-black);
+    background-color: var(--color-valencia);
+  }
+}
+
 body {
+  padding: 16px;
   display: flex;
   flex-direction: column;
-}
 
-header {
-  display: flex;
-}
+  > header {
+    display: flex;
+    justify-content: space-between;
 
-main {
-  display: flex;
+    > h1.logo > a{
+      display: flex;
+      align-items: center;
+      column-gap: 8px;
+      text-decoration: none;
+      color: var(--color-valencia);
+
+      > img.pochi-logo {
+        width: 72px;
+        height: 72px;
+      }
+
+      > span.title {
+        font-size: 48px;
+        font-weight: bolder;
+      }
+    }
+  }
+
+  > main {
+    display: flex;
+  }
 }
