@@ -1,18 +1,18 @@
 {
-  "name": "PWA template",
-  "short_name": "PWAtmp",
-  "description": "template repo of PWA",
+  "name": "おポチマン",
+  "short_name": "opochi",
+  "description": "お年玉の最適な使いみちを考えるためのアプリ",
   "icons": [
     {
-      "src": "icon-512x512.png",
+      "src": "assets/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }, {
-      "src": "icon-256x256.png",
+      "src": "assets/icon-256x256.png",
       "sizes": "256x256",
       "type": "image/png"
     }, {
-      "src": "icon-128x128.png",
+      "src": "assets/icon-128x128.png",
       "sizes": "128x128",
       "type": "image/png"
     }
