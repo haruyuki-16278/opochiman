@@ -35,6 +35,7 @@ button {
   color: var(--color-valencia);
   font-size: 24px;
   line-height: 1;
+  vertical-align: baseline;
   font-weight: bold;
   background-color: var(--color-white);
   transition: all .2s;
@@ -53,7 +54,7 @@ body {
 
   > header {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
 
     > h1.logo > a{
       display: flex;
@@ -71,6 +72,26 @@ body {
         font-size: 48px;
         font-weight: bolder;
       }
+    }
+
+    > div.amount {
+      margin-inline: auto 16px;
+      display: flex;
+      align-items: center;
+
+      > h3 {
+        margin-inline: 4px;
+      }
+
+      > span#money_output {
+        color: var(--color-valencia);
+        font-size: 24px;
+        font-weight: bold;
+      }
+    }
+
+    > button#otoshidama {
+      height: 64px;
     }
   }
 
