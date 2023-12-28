@@ -36,4 +36,3 @@ const optimization = (items, w) => {
 		}
 	}
 }
-console.log(optimization([{name:"a",price:1500},{name:"b",price:7800}],20000));
