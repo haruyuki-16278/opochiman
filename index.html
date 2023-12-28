@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
   <title>おポチマン</title>
-  <link rel="stylesheet" href="style.css"/>
-  <link rel="manifest" href="manifest.json"/>
-  <link rel="manifest" href="manifest.json"/>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="manifest" href="manifest.json" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
@@ -16,11 +17,12 @@
   <script type="module" src="index.js"></script>
   <script src="main.js" type="module"></script>
 </head>
+
 <body>
   <header>
     <h1 class="logo">
       <a href="/index.html">
-        <img class="pochi-logo" src="assets/pochi.svg" alt="ポチ"/>
+        <img class="pochi-logo" src="assets/pochi.svg" alt="ポチ" />
         <span class="title">おポチマン</span>
       </a>
     </h1>
@@ -89,7 +91,7 @@
   <script>
     if (!localStorage.getItem('money')) {
       document.getElementById('money_output').innerHTML = 0;
-    }else{
+    } else {
       money_out = localStorage.getItem('money');
       document.getElementById('money_output').innerHTML = money_out;
     }
@@ -101,25 +103,26 @@
     let m_m_s = document.getElementById('money_submit');
     let m_m_c = document.getElementById('cancel');
 
-    m_m_o.addEventListener('click',function(){
+    m_m_o.addEventListener('click', function () {
       money_dialog.showModal();
-    },false);
+    }, false);
 
-    m_m_s.addEventListener('click',function() {
+    m_m_s.addEventListener('click', function () {
       money_dialog.close();
-    },false);
+    }, false);
 
     function set_money() {
       //ローカルストレージ保存処理
-    const money = document.getElementById('money').value;
-      
-      localStorage.setItem('money',money);
-    }
-    
+      const money = document.getElementById('money').value;
 
-    m_m_c.addEventListener('click',function(){
+      localStorage.setItem('money', money);
+    }
+
+
+    m_m_c.addEventListener('click', function () {
       money_dialog.close();
-    },false);
+    }, false);
   </script>
 </body>
+
 </html>
