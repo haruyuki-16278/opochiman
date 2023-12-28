@@ -1,36 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
-    <title>おポチマン</title>
-    <link rel="stylesheet" href="style.css"/>
-    <link rel="manifest" href="manifest.json"/>
-    <script>
-      navigator.serviceWorker.register("./sw.js")
-    </script>
-  </head>
-  <body>
-    <header>
-      <h1 class="logo">
-        <a href="/index.html">
-          <img class="pochi-logo" src="assets/pochi.svg" alt="ポチ"/>
-          <span class="title">おポチマン</span>
-        </a>
-      </h1>
-      <button class="otoshidama">もらった金額</button>
-    </header>
-    <main>
-      <canvas id="treemapView"></canvas>
-      <div class="wishlist">
-        <div class="wishlist-title">
-          <h2>欲しい物リスト</h2>
-          <button>追加</button>
-        </div>
-        <ol>
-          <li>欲しい物</li>
-        </ol>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+  <title>おポチマン</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="manifest" href="manifest.json"/>
+  <script>
+    navigator.serviceWorker.register("./sw.js")
+  </script>
+  <script type="module" src="index.js"></script>
+</head>
+<body>
+  <header>
+    <h1 class="logo">
+      <a href="/index.html">
+        <img class="pochi-logo" src="assets/pochi.svg" alt="ポチ"/>
+        <span class="title">おポチマン</span>
+      </a>
+    </h1>
+    <button class="otoshidama">もらった金額</button>
+  </header>
+  <main>
+    <canvas id="treemapView"></canvas>
+    <div class="wishlist">
+      <div class="wishlist-title">
+        <h2>欲しい物リスト</h2>
+        <button id="show-add-wishlist-form">追加</button>
       </div>
-    </main>
-  </body>
+      <ol>
+        <li>欲しい物</li>
+      </ol>
+    </div>
+  </main>
+  <dialog id="wish-list-form">
+    <form>
+      <label>欲しい物</label><input type="text" id="item-input" required>
+      <label>値段</label><input type="number" id="price-input" required>
+      <button id="add-item-button">追加</button>
+      <button id="close-add-wish-form">キャンセル</button>
+    </form>
+  </dialog>
+</body>
 </html>
