@@ -23,9 +23,37 @@ function mapTree(array) {
   ctx.canvas.height = canvas.clientHeight;
   ctx.canvas.width = canvas.clientWidth;
 
-  array.forEach((item) => {
-    
+  const area = ctx.canvas.height * ctx.canvas.width
+  const fillFromHeight = ctx.canvas.height < ctx.canvas.width
+
+  const whitespace = {x: 0, y: 0}
+
+  array.sort((a, b) => b.price - a.price)
+
+  array.forEach((item, i) => {
+    const rate = item.price / money
+    const size = (fillFromHeight + i) % 2 === 1
+                 ? area * rate / (ctx.canvas.height - whitespace.y)
+                 : area * rate / (ctx.canvas.width - whitespace.x)
+    console.log(rate, size)
+    if((fillFromHeight + i) % 2 === 1) {
+      ctx.fillStyle = '#CBC8C6'
+      ctx.fillRect(whitespace.x, whitespace.y, size, ctx.canvas.height - whitespace.y)
+      ctx.strokeStyle = '#D44936'
+      ctx.lineWidth = 4
+      ctx.strokeRect(whitespace.x, whitespace.y, size, ctx.canvas.height - whitespace.y)
+      whitespace.x += size
+    }
+    else {
+      ctx.fillStyle = '#CBC8C6'
+      ctx.fillRect(whitespace.x, whitespace.y, ctx.canvas.width - whitespace.x, size)
+      ctx.strokeStyle = '#D44936'
+      ctx.lineWidth = 4
+      ctx.strokeRect(whitespace.x, whitespace.y, ctx.canvas.width - whitespace.x, size)
+      whitespace.y += size
+    }
+
   });
 }
 
-mapTree([]);
+mapTree(JSON.parse(localStorage.getItem('wishlist')));
