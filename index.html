@@ -50,10 +50,18 @@
       </div>
       <div class="modal-body">
         <form>
-          <label>欲しい物</label><input type="text" id="item-input" required>
-          <label>値段</label><input type="number" id="price-input" required>
-          <button id="add-item-button">追加</button>
-          <button id="close-add-wish-form">キャンセル</button>
+          <div class="inputs">
+            <div class="input-row">
+              <label>欲しい物</label><input type="text" id="item-input" required>
+            </div>
+            <div class="input-row">
+              <label>値段</label><input type="number" id="price-input" required>
+            </div>
+          </div>
+          <div class="buttons">
+            <button id="add-item-button">追加</button>
+            <button id="close-add-wish-form">キャンセル</button>
+          </div>
         </form>
       </div>
     </div>
@@ -65,14 +73,18 @@
       </div>
       <div class="modal-body">
         <form id="money_input">
-          <label>
-            もらった金額<input type="number" id="money">
-          </label>
-          <button id="money_submit" onclick="set_money()">決定</button>
-          <button id="cancel">キャンセル</button>
+          <div class="inputs">
+            <div class="input-row">
+              <label>もらった金額</label><input type="number" id="money">
+            </div>
+          </div>
+          <div class="buttons">
+            <button id="money_submit" onclick="set_money()">決定</button>
+            <button id="cancel">キャンセル</button>
+          </div>
         </form>
       </div>
-    </div>
+    </form>
   </dialog>
   <script>
     if (!localStorage.getItem('money')) {
