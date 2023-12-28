@@ -28,6 +28,15 @@ window.onload = () => {
     li.setAttribute('draggable', true);
     li.setAttribute('data-index', index);
 
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'x';
+    deleteButton.addEventListener('click', () => {
+      wishList.splice(index, 1);
+      localStorage.setItem('wishlist', JSON.stringify(wishList));
+      location.reload();
+    });
+    li.appendChild(deleteButton);
+
     li.addEventListener('dragstart', (e) => {
       e.dataTransfer.setData('text/plain', index);
     });
