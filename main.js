@@ -6,7 +6,7 @@
 
 /**
  * 配列を受け取ってツリーマップに描画する関数
- * @param {WishItem[]} array 
+ * @param {WishItem[]} array
  */
 function mapTree(array) {
   /* 現在のお年玉合計金額 */
@@ -80,8 +80,19 @@ function mapTree(array) {
 
       whitespace.y += size;
     }
-
   });
+
+  // 貯金テキスト描画
+  const center = { // 余白の重心
+    x: whitespace.x + (ctx.canvas.width - whitespace.x) / 2,
+    y: whitespace.y + (ctx.canvas.height - whitespace.y) / 2
+  };
+  const savingText = String(money - array.reduce((sum, value) => sum + value.price, 0)) + '円' // 貯金額
+  const savingTextMetrics = ctx.measureText(savingText)
+  ctx.font = '12pt Arial';
+  ctx.fillStyle = '#000000';
+  ctx.fillText('貯金額', center.x - ctx.measureText('貯金額').width / 2, center.y)
+  ctx.fillText(savingText, center.x - savingTextMetrics.width / 2, center.y + 20)
 }
 
 mapTree(JSON.parse(localStorage.getItem('wishlist')));
