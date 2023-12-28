@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8"/>
-  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+  <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
   <title>おポチマン</title>
   <link rel="stylesheet" href="style.css"/>
   <link rel="manifest" href="manifest.json"/>
@@ -10,6 +10,7 @@
     navigator.serviceWorker.register("./sw.js")
   </script>
   <script type="module" src="index.js"></script>
+  <script src="main.js" type="module"></script>
 </head>
 <body>
   <header>
@@ -19,9 +20,29 @@
         <span class="title">おポチマン</span>
       </a>
     </h1>
-    <button class="otoshidama">もらった金額</button>
+    <h3>もらった金額：</h3>
+    <div id="money_output"></div>
+    <h3>円</h3>
+    <button id="otoshidama">もらった金額を入力</button>
+    <dialog id="money_modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>もらった金額</h2>
+        </div>
+        <div class="modal-body">
+          <form id="money_input">
+            <label>
+              もらった金額を入力<input type="number" id="money">
+            </label>
+            <button id="money_submit" onclick="set_money()">決定</button>
+            <button id="cancel">キャンセル</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
   </header>
   <main>
+
     <canvas id="treemapView"></canvas>
     <div class="wishlist">
       <div class="wishlist-title">
@@ -41,5 +62,40 @@
       <button id="close-add-wish-form">キャンセル</button>
     </form>
   </dialog>
+  <script>
+    if (!localStorage.getItem('money')) {
+      document.getElementById('money_output').innerHTML = 0;
+    }else{
+      money_out = localStorage.getItem('money');
+      document.getElementById('money_output').innerHTML = money_out;
+    }
+
+
+
+    let money_dialog = document.querySelector('dialog');
+    let m_m_o = document.getElementById('otoshidama');
+    let m_m_s = document.getElementById('money_submit');
+    let m_m_c = document.getElementById('cancel');
+
+    m_m_o.addEventListener('click',function(){
+      money_dialog.showModal();
+    },false);
+
+    m_m_s.addEventListener('click',function() {
+      money_dialog.close();
+    },false);
+
+    function set_money() {
+      //ローカルストレージ保存処理
+    const money = document.getElementById('money').value;
+      
+      localStorage.setItem('money',money);
+    }
+    
+
+    m_m_c.addEventListener('click',function(){
+      money_dialog.close();
+    },false);
+  </script>
 </body>
 </html>
