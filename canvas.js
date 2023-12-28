@@ -120,6 +120,6 @@ function mapTree(array) {
 const arrayIndex = optimization(JSON.parse(localStorage.getItem('wishlist')), localStorage.getItem('money'));
 const wishArray = [];
 arrayIndex.forEach((index) => {
-  array.push(JSON.parse(localStorage.getItem('wishlist'))[index]);
+  wishArray.push(JSON.parse(localStorage.getItem('wishlist'))[index]);
 });
 mapTree(wishArray);
