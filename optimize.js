@@ -3,8 +3,6 @@ const generate2DArray = (height, width) => {
 }
 //items : オブジェクトの配列,w : お年玉の額
 export const optimization = (items, w) => {
-	console.log(items);
-	console.log(w);
 	const n = items.length;
 	//dp[i][j] := i番目までの商品を選んだ時にj円を超えないような最大の優先度がはいる
 	let dp = generate2DArray(n, w + 1);
