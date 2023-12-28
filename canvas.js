@@ -4,6 +4,14 @@
  * @property {number} price
  */
 
+
+const colorPastelRed = '#fedddb';
+const colorPastelBlueberry = '#b3b4ed';
+const colorPastelPalegreen = '#b5dabf';
+const colorWhite = '#fafafa';
+const colorValencia = '#D44936';
+
+
 /**
  * 配列を受け取ってツリーマップに描画する関数
  * @param {WishItem[]} array
@@ -42,9 +50,13 @@ function mapTree(array) {
 
     if((fillFromHeight + i) % 2 === 1) { // 縦にfullで埋める処理
       // 矩形描画
-      ctx.fillStyle = '#CBC8C6';
+      ctx.fillStyle = i % 3 === 0
+                      ? colorPastelRed
+                      : i % 3 === 1
+                      ? colorPastelPalegreen
+                      : colorPastelBlueberry;
       ctx.fillRect(whitespace.x, whitespace.y, size, ctx.canvas.height - whitespace.y);
-      ctx.strokeStyle = '#D44936';
+      ctx.strokeStyle = colorWhite;
       ctx.lineWidth = 4;
       ctx.strokeRect(whitespace.x, whitespace.y, size, ctx.canvas.height - whitespace.y);
 
@@ -62,9 +74,13 @@ function mapTree(array) {
     }
     else { // 横にfullで埋める処理
       // 矩形描画
-      ctx.fillStyle = '#CBC8C6';
+      ctx.fillStyle = i % 3 === 0
+                      ? colorPastelRed
+                      : i % 3 === 1
+                      ? colorPastelPalegreen
+                      : colorPastelBlueberry;
       ctx.fillRect(whitespace.x, whitespace.y, ctx.canvas.width - whitespace.x, size);
-      ctx.strokeStyle = '#D44936';
+      ctx.strokeStyle = colorWhite;
       ctx.lineWidth = 4;
       ctx.strokeRect(whitespace.x, whitespace.y, ctx.canvas.width - whitespace.x, size);
 
@@ -91,8 +107,11 @@ function mapTree(array) {
   const savingTextMetrics = ctx.measureText(savingText)
   ctx.font = '12pt Arial';
   ctx.fillStyle = '#000000';
-  ctx.fillText('貯金額', center.x - ctx.measureText('貯金額').width / 2, center.y)
-  ctx.fillText(savingText, center.x - savingTextMetrics.width / 2, center.y + 20)
+  ctx.fillText('貯金額', center.x - ctx.measureText('貯金額').width / 2, center.y);
+  ctx.fillText(savingText, center.x - savingTextMetrics.width / 2, center.y + 20);
+  ctx.strokeStyle = colorValencia;
+  ctx.lineWidth = 4;
+  ctx.strokeRect(whitespace.x + 4, whitespace.y + 4, ctx.canvas.width - whitespace.x - 8, ctx.canvas.height - whitespace.y - 8);
 }
 
 mapTree(JSON.parse(localStorage.getItem('wishlist')));
