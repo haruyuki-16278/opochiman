@@ -54,9 +54,9 @@ window.onload = () => {
     const dropTarget = document.elementFromPoint(e.clientX, e.clientY);
     const dropIndex = dropTarget.getAttribute('data-index');
     if (dropIndex) {
-      const temp = wishList[dropIndex];
-      wishList[dropIndex] = wishList[dragIndex];
-      wishList[dragIndex] = temp;
+      const temp = wishList[dragIndex];
+      wishList.splice(dragIndex, 1);
+      wishList.splice(dropIndex, 0, temp);
       localStorage.setItem('wishlist', JSON.stringify(wishList));
       location.reload();
     }
