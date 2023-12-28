@@ -4,7 +4,13 @@ window.onload = () => {
   const btnClose = document.getElementById("close-add-wish-form");
 
   btnOpen.addEventListener('click', () => {
-    dialog.showModal();
+    const wishList = localStorage.getItem('wishlist') ? JSON.parse(localStorage.getItem('wishlist')) : [];
+    console.log("wishList.length:" + wishList.length);
+    if (wishList.length < 10) {
+      dialog.showModal();
+    } else {
+      alert("欲しいものリストは10個までです。");
+    }
   });
 
   btnClose.addEventListener('click', () => {
@@ -14,18 +20,36 @@ window.onload = () => {
   const wishListOl = document.querySelector('.wishlist ol');
   const wishList = localStorage.getItem('wishlist') ? JSON.parse(localStorage.getItem('wishlist')) : [];
 
-  wishList.forEach(item => {
+  wishList.forEach((item, index) => {
     const li = document.createElement('li');
     li.textContent = item.name;
 
     const btnUp = document.createElement('button');
-    btnUp.textContent = '+';
+    btnUp.textContent = '↑';
     btnUp.id = 'up';
+    btnUp.addEventListener('click', () => {
+      if (index > 0) {
+        const temp = wishList[index];
+        wishList[index] = wishList[index - 1];
+        wishList[index - 1] = temp;
+        localStorage.setItem('wishlist', JSON.stringify(wishList));
+        location.reload();
+      }
+    });
     li.appendChild(btnUp);
 
     const btnDown = document.createElement('button');
-    btnDown.textContent = '-';
+    btnDown.textContent = '↓';
     btnDown.id = 'down';
+    btnDown.addEventListener('click', () => {
+      if (index < wishList.length - 1) {
+        const temp = wishList[index];
+        wishList[index] = wishList[index + 1];
+        wishList[index + 1] = temp;
+        localStorage.setItem('wishlist', JSON.stringify(wishList));
+        location.reload();
+      }
+    });
     li.appendChild(btnDown);
 
     wishListOl.appendChild(li);
@@ -33,9 +57,9 @@ window.onload = () => {
 }
 
 document.getElementById("add-item-button").onclick = () => {
+  const wishList = localStorage.getItem('wishlist') ? JSON.parse(localStorage.getItem('wishlist')) : [];
   const itemName = document.getElementById("item-input").value;
   const itemPrice = document.getElementById("price-input").value;
-  const wishList = localStorage.getItem('wishlist') ? JSON.parse(localStorage.getItem('wishlist')) : [];
   if (itemPrice) {
     const wishItem = { "name": itemName, "price": itemPrice }
     console.log("wishList" + JSON.stringify(wishList));
