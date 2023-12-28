@@ -30,22 +30,6 @@
       <h3>円</h3>
     </div>
     <button id="otoshidama">もらった金額を入力</button>
-    <dialog id="money_modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2>もらった金額を入力</h2>
-        </div>
-        <div class="modal-body">
-          <form id="money_input">
-            <label>
-              もらった金額<input type="number" id="money">
-            </label>
-            <button id="money_submit" onclick="set_money()">決定</button>
-            <button id="cancel">キャンセル</button>
-          </form>
-        </div>
-      </div>
-    </dialog>
   </header>
   <main>
 
@@ -74,6 +58,22 @@
       </div>
     </div>
   </dialog>
+  <dialog id="money_modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>もらった金額を入力</h2>
+      </div>
+      <div class="modal-body">
+        <form id="money_input">
+          <label>
+            もらった金額<input type="number" id="money">
+          </label>
+          <button id="money_submit" onclick="set_money()">決定</button>
+          <button id="cancel">キャンセル</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
   <script>
     if (!localStorage.getItem('money')) {
       document.getElementById('money_output').innerHTML = 0;
@@ -84,7 +84,7 @@
 
 
 
-    let money_dialog = document.querySelector('dialog');
+    let money_dialog = document.getElementById('money_modal');
     let m_m_o = document.getElementById('otoshidama');
     let m_m_s = document.getElementById('money_submit');
     let m_m_c = document.getElementById('cancel');
