@@ -46,6 +46,18 @@ button {
   }
 }
 
+dialog {
+  margin: auto;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 0 1em black;
+}
+ 
+dialog::backdrop {
+  /* 背景を半透明のブラックにする */
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
 body {
   padding: 16px;
   font-family: 'Noto Sans JP', sans-serif;
