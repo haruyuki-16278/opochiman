@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
-    <title>PWA template</title>
+    <title>おポチマン</title>
     <link rel="stylesheet" href="style.css"/>
     <link rel="manifest" href="manifest.json"/>
     <script>
@@ -12,15 +12,25 @@
   </head>
   <body>
     <header>
-      <div class="logo"></div>
-      <button class="otoshidama"></button>
+      <h1 class="logo">
+        <a href="/index.html">
+          <img class="pochi-logo" src="assets/pochi.svg" alt="ポチ"/>
+          <span class="title">おポチマン</span>
+        </a>
+      </h1>
+      <button class="otoshidama">もらった金額</button>
     </header>
     <main>
-      <canvas>
-      </canvas>
-      <ol>
-        <li>欲しい物</li>
-      </ol>
+      <canvas id="treemapView"></canvas>
+      <div class="wishlist">
+        <div class="wishlist-title">
+          <h2>欲しい物リスト</h2>
+          <button>追加</button>
+        </div>
+        <ol>
+          <li>欲しい物</li>
+        </ol>
+      </div>
     </main>
   </body>
 </html>
