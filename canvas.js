@@ -103,7 +103,9 @@ function mapTree(array) {
     x: whitespace.x + (ctx.canvas.width - whitespace.x) / 2,
     y: whitespace.y + (ctx.canvas.height - whitespace.y) / 2
   };
-  const savingText = String(money - array.reduce((sum, value) => sum + value.price, 0)) + '円' // 貯金額
+  let saving = money
+  array.forEach((item) => saving -= item.price);
+  const savingText = String(saving) + '円' // 貯金額
   const savingTextMetrics = ctx.measureText(savingText)
   ctx.font = '12pt Arial';
   ctx.fillStyle = '#000000';
