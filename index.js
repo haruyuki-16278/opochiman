@@ -6,7 +6,6 @@ window.onload = () => {
 
   btnOpen.addEventListener('click', () => {
     const wishList = localStorage.getItem('wishlist') ? JSON.parse(localStorage.getItem('wishlist')) : [];
-    console.log("wishList.length:" + wishList.length);
     if (wishList.length < 10) {
       dialog.showModal();
     } else {

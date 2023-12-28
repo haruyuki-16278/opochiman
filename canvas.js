@@ -1,3 +1,4 @@
+import { optimization } from "./optimize.js";
 /**
  * @typedef WishItem
  * @property {string} name
@@ -34,27 +35,27 @@ function mapTree(array) {
   const area = ctx.canvas.height * ctx.canvas.width;
   const fillFromHeight = ctx.canvas.height < ctx.canvas.width;
 
-  const whitespace = {x: 0, y: 0};
+  const whitespace = { x: 0, y: 0 };
 
   array.sort((a, b) => b.price - a.price);
 
   array.forEach((item, i) => {
     const rate = item.price / money;
     const size = (fillFromHeight + i) % 2 === 1
-                 ? area * rate / (ctx.canvas.height - whitespace.y)
-                 : area * rate / (ctx.canvas.width - whitespace.x);
+      ? area * rate / (ctx.canvas.height - whitespace.y)
+      : area * rate / (ctx.canvas.width - whitespace.x);
     const nameText = String(item.name)
     const priceText = String(item.price) + '円'
     const nameTextMetrics = ctx.measureText(nameText)
     const priceTextMetrics = ctx.measureText(priceText)
 
-    if((fillFromHeight + i) % 2 === 1) { // 縦にfullで埋める処理
+    if ((fillFromHeight + i) % 2 === 1) { // 縦にfullで埋める処理
       // 矩形描画
       ctx.fillStyle = i % 3 === 0
-                      ? colorPastelRed
-                      : i % 3 === 1
-                      ? colorPastelPalegreen
-                      : colorPastelBlueberry;
+        ? colorPastelRed
+        : i % 3 === 1
+          ? colorPastelPalegreen
+          : colorPastelBlueberry;
       ctx.fillRect(whitespace.x, whitespace.y, size, ctx.canvas.height - whitespace.y);
       ctx.strokeStyle = colorWhite;
       ctx.lineWidth = 4;
@@ -75,10 +76,10 @@ function mapTree(array) {
     else { // 横にfullで埋める処理
       // 矩形描画
       ctx.fillStyle = i % 3 === 0
-                      ? colorPastelRed
-                      : i % 3 === 1
-                      ? colorPastelPalegreen
-                      : colorPastelBlueberry;
+        ? colorPastelRed
+        : i % 3 === 1
+          ? colorPastelPalegreen
+          : colorPastelBlueberry;
       ctx.fillRect(whitespace.x, whitespace.y, ctx.canvas.width - whitespace.x, size);
       ctx.strokeStyle = colorWhite;
       ctx.lineWidth = 4;
@@ -116,4 +117,9 @@ function mapTree(array) {
   ctx.strokeRect(whitespace.x + 4, whitespace.y + 4, ctx.canvas.width - whitespace.x - 8, ctx.canvas.height - whitespace.y - 8);
 }
 
-mapTree(JSON.parse(localStorage.getItem('wishlist')));
+const arrayIndex = optimization(JSON.parse(localStorage.getItem('wishlist')), localStorage.getItem('money'));
+const wishArray = [];
+arrayIndex.forEach((index) => {
+  array.push(JSON.parse(localStorage.getItem('wishlist'))[index]);
+});
+mapTree(wishArray);
